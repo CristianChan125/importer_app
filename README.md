@@ -1,24 +1,50 @@
-# README
+# Importer App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicación en **Ruby on Rails** para importar archivos delimitados por tabs, normalizar datos y calcular ingresos totales.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## Requisitos
 
-* System dependencies
+Antes de empezar, asegúrate de tener instalados:
 
-* Configuration
+- Ruby >= 3.1
+- Rails >= 7.0
+- PostgreSQL
+- Bundler
+- Node.js y Yarn (para activos y frontend)
 
-* Database creation
+---
 
-* Database initialization
+## Instalación y configuración
 
-* How to run the test suite
+1. **Clonar el repositorio**
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+git clone <repo>
+cd importer_app
 
-* Deployment instructions
 
-* ...
+2. **Instalar dependencias**
+
+Instalamos desde la terminal las dependencias con los comandos
+
+bundle install
+yarn install # si tu proyecto usa JavaScript/Assets
+
+3. **Configurar la base de datos**
+ Configuramos el archivo config/database.yml para conectar nuestra base de datos postgres
+  default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: <tu_contraseña>
+  host: localhost
+
+  development:
+    <<: *default
+    database: importer_app_development
+
+4. **Crear y migrar la base de datos**
+    rails db:create
+    rails db:migrate
