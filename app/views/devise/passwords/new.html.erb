@@ -1,0 +1,35 @@
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+    <h3 class="text-center mb-4">Recuperar Contraseña</h3>
+
+    <p class="text-muted text-center">
+      Ingresa tu correo y te enviaremos instrucciones para restablecer tu contraseña.
+    </p>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <% if resource.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Correo electrónico" %>
+      </div>
+
+      <%= f.submit "Enviar instrucciones", class: "btn btn-primary w-100" %>
+    <% end %>
+
+    <hr>
+
+    <div class="text-center">
+      <%= link_to "¿Ya recuerdas tu contraseña? Inicia sesión", new_session_path(resource_name), class: "d-block mb-2" %>
+      <%= link_to "Crear cuenta nueva", new_registration_path(resource_name), class: "d-block" %>
+    </div>
+  </div>
+</div>

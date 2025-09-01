@@ -1,6 +1,12 @@
 require 'csv'
 
 class ImportsController < ApplicationController
+  before_action :authenticate_user!
+  
+  def index
+    # solo usuarios logueados ven esto
+  end
+  
   def new
     @ventas = Venta.order(created_at: :desc).page(params[:page]).per(10)
     @total_venta = Venta.all.sum("precio_item * total_items")
